@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Step03_Dir_mgMouse.html</title>
+	<style>
+	.box {
+		width: 300px;
+		height: 300px;
+		background-color: #cecece; 
+	}
+	</style>
+	<script src="js/angular.min.js"></script>
+</head>
+<body ng-init="eventName=''">
+	<div class="box"
+		ng-mouseenter="eventName='mouseenter!'"
+		ng-mouseleave="eventName='mouseleave!'"
+		ng-mousemove=""
+		ng-mousedown="eventName='mouusedown!'"
+		ng-mouseup="eventName='mouseup!'">
+	</div>
+	<p>이벤트명 : {{eventName}}</p>
+	<p></p>
+</body>
+</html>

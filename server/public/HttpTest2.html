@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>HttpTest2.html</title>
+	<script src="js/angular.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	myApp.controller("one",["$scope","$http",function($scope,$http){
+		$scope.names = ['하나','두울'];
+		$scope.getList = function(){
+			$http({
+				url:"/getList",
+				method:"get"
+			})
+			.success(function(data){
+				$scope.names = data;
+			});
+		};
+	}]);
+	</script>
+</head>
+<body ng-controller="one">
+	<h3>$http 서비스 테스트2</h3>
+	<button ng-click="getList()">목록 받아오기</button>
+	<ul>
+		<li ng-repeat="tmp in names">{{tmp}}</li>
+	</ul>
+</body>
+</html>

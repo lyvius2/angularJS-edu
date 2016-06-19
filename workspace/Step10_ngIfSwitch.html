@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Step10_ngIfSwitch.html</title>
+	<script src="js/angular.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	myApp.controller("one",["$scope",function($scope){
+		$scope.onFocus = function(name){
+			$scope.msg1 = name + " focus!";
+		};
+		$scope.onBlur = function(name){
+			$scope.msg2 = name + " blur!";
+		};
+		$scope.num = "1";
+	}]);
+	</script>
+</head>
+<body ng-controller="one">
+	<a href="#" ng-focus="onFocus('anchor')" ng-blur="onBlur('anchor')">링크</a>
+	<button ng-focus="onFocus('button')" ng-blur="onBlur('button')">버튼</button>
+	<input ng-focus="onFocus('input')" ng-blur="onBlur('input')" type="text" placeholder="form요소"/><br/>
+	<p>{{msg1}}</p>
+	<p>{{msg2}}</p>
+	<a href="#" ng-init="isMake=false" ng-focus="isMake=true" ng-blur="isMake=false">링크2</a><br/>
+	<img ng-if="isMake" src="images/rabbit1.png"/><br/>
+	<select ng-model="num">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+	</select>
+	<br/>
+	<div ng-switch="num">
+		<img ng-switch-when="1" src="images/run1.png"/>
+		<img ng-switch-when="2" src="images/run2.png"/>
+		<img ng-switch-when="3" src="images/run3.png"/>
+		<img ng-switch-default src="images/rabbit1.png"/>
+	</div>
+</body>
+</html>

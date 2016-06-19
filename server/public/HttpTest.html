@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>HttpTest.html</title>
+	<script src="js/angular.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	myApp.controller("one",["$scope","$http",function($scope,$http){
+		$scope.send = function($event){
+			// 폼 전송 이벤트 막기
+			$event.preventDefault();
+			// $http 서비스를 이용해서 서버에 ajax로 전송
+			$http({
+				url:"/httpTest",
+				method:"post",
+				data:$scope.formData
+			})
+			.success(function(data){
+				console.log(data);
+				$scope.response = data;
+			})
+			.error(function(data){
+				console.log(data);
+			});
+		};
+	}]);
+	</script>
+</head>
+<body ng-controller="one">
+	<h3>$http 서비스 테스트</h3>
+	<form ng-submit="send($event)" action="go">
+		이름 <input type="text" ng-model="formData.name"/>
+		주소 <input type="text" ng-model="formData.addr"/>
+		<button type="submit">전송</button>
+	</form>
+	<p>formData : {{formData}}</p>
+	<p>response : {{response}}</p>
+</body>
+</html>

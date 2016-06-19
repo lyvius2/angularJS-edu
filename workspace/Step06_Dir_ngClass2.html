@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Step06_Dir_ngClass2.html</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script src="js/angular.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	myApp.controller("one",["$scope",function($scope){
+		var data = [];
+		data.push({num:1,name:'김구라',addr:'노량진'});
+		data.push({num:2,name:'해골',addr:'행신동'});
+		data.push({num:3,name:'원숭이',addr:'상도동'});
+		data.push({num:4,name:'주뎅이',addr:'봉천동'});
+		$scope.friends = data;
+	}]);
+	</script>
+</head>
+<body ng-controller="one">
+	<button class="btn" ng-class="{'btn-primary':true}">버튼</button>
+	<br>
+	<button class="btn" ng-class="{'btn-info':info,'btn-block':block,'active':active}">버튼</button>
+	<br>
+	<input type="checkbox" ng-model="info"/> Info : {{info}}
+	<br>
+	<input type="checkbox" ng-model="block"/> Block : {{block}}
+	<br>
+	<input type="checkbox" ng-model="active"/> Active : {{active}}
+	<br>
+	<button class="btn" ng-init="selected='btn-danger'" ng-class="selected">버튼</button>
+	<select ng-model="selected">
+		<option value="btn-primary">primary</option>
+		<option value="btn-info">info</option>
+		<option value="btn-warning">warning</option>
+		<option value="btn-danger">danger</option>
+	</select>
+	<p ng-init="bgColor='bg-primary'" ng-class="bgColor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam quisquam voluptate maiores dignissimos suscipit. Voluptates nemo aliquid incidunt nulla veniam, eos omnis fugit adipisci assumenda fuga, molestiae facilis obcaecati quos.</p>
+	<select ng-model="bgColor">
+		<option value="bg-primary">primary</option>
+		<option value="bg-success">success</option>
+		<option value="bg-info">info</option>
+		<option value="bg-warning">warning</option>
+	</select>
+	<br>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>주소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tmp in friends" ng-class-even="'bg-info'" ng-class-odd="'bg-warning'">
+				<td>{{tmp.num}}</td>
+				<td>{{tmp.name}}</td>
+				<td>{{tmp.addr}}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Step02_Controller</title>
+	<script src="js/angular.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	myApp.controller("Ctrl1",["$scope",function($scope){
+		$scope.name = '김구라';
+		$scope.nums = [10,20,30,40,50];
+		$scope.clicked = function(){
+			alert("버튼을 눌렀네요?");
+		}
+	}]);
+
+	myApp.controller("Ctrl2",["$scope",function($scope){
+		$scope.name = '해골';
+		$scope.msg = ["하나","두울","세엣"];
+		$scope.list = [{name:'홍길동',no:1},{name:'박길동',no:2},{name:'고길동',no:3}];
+		$scope.count = 0;
+		$scope.clicked = function(){
+			$scope.count++;
+			$scope.msg.push($scope.count);
+		};
+		$scope.clearAll = function(){
+			$scope.msg = [];
+		}
+	}]);
+	</script>
+</head>
+<body>
+	<!-- 아래 div에서 일어나는 일은 Ctrl1 컨트롤러로 제어를 하겠다는 의미 -->
+	<div ng-controller="Ctrl1">
+		<p>내 이름은 <strong>{{name}}</strong></p>
+		<ul>
+			<li ng-repeat="tmp in nums">{{tmp}}</li>
+		</ul>
+		<button ng-click="clicked()">눌러보세요</button>
+	</div>
+
+	<div ng-controller="Ctrl2">
+		<p>너의 이름은 <strong>{{name}}</strong></p>
+		<ul>
+			<li ng-repeat="a in msg">{{a}}</li>
+		</ul>
+		<ul>
+			<li ng-repeat="a in list">{{a.no}} - {{a.name}}</li>
+		</ul>
+		<button ng-click="clicked()">눌러보세요</button>
+		<button ng-click="clearAll()">배열 clear</button>
+		<p>버튼을 <strong>{{count}}</strong> 번 눌렀네?</p>
+	</div>
+</body>
+</html>

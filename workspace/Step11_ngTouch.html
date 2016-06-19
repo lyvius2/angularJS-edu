@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Step11_ngTouch.html</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-touch.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",["ngTouch"]);
+	myApp.controller("one",["$scope",function($scope){
+		
+	}]);
+	</script>
+</head>
+<body ng-controller="one">
+	<div class="container">
+		<div style="height:300px; background-color:yellow" ng-swipe-left="msg='swipe left!'" ng-swipe-right="msg='swipe right!'">
+			
+		</div>
+		<p>{{msg}}</p>
+	</div>
+</body>
+</html>

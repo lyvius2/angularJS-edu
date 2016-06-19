@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Step13_Service.html</title>
+	<script src="js/angular.min.js"></script>
+	<script>
+	// angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	// StarBucks 라는 이름의 서비스를 "myApp" 영역에 만든다.
+	myApp.service("StarBucks",function(){
+		// 이 함수로 객첵가 생성되었을 때 어떤 저장소와 어떤 기능을 가지게 할지를 정한다.
+		this.coffeeCount = 0;
+		this.getCoffee = function(){
+			this.coffeeCount++;
+			return "아메리카노";
+		};
+		this.breadCount = 0;
+		this.getBread = function(){
+			this.breadCount++;
+			return "샌드위치";
+		}
+	});
+	myApp.controller("one",["$scope","StarBucks",function($scope,star){
+		$scope.orderCoffee = function(){
+			// 주입받은 StarBucks 서비스를 이용해서 coffee 주문
+			var coffee = star.getCoffee();
+			alert(coffee + " 를 마셔요! 얌얌");
+		};
+	}]);
+	myApp.controller("two",["$scope","StarBucks",function($scope,star){
+		$scope.showCount = function(){
+			var count = star.coffeeCount;
+			alert(count + " 잔 판매되었습니다.");
+		};
+	}]);
+	</script>
+</head>
+<body>
+	<div ng-controller="one">
+		<button ng-click="orderCoffee()">커피 주문하기</button>
+	</div>
+	<div ng-controller="two">
+		<button ng-click="showCount()">커피 누적 판매량 알아보기</button>
+	</div>
+</body>
+</html>

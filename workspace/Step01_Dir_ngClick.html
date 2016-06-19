@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Step01_Dir_ngClick.html</title>
+	<script src="js/angular.min.js"></script>
+</head>
+<body ng-init="msg=''" ng-init="count=0">
+	<button ng-click="msg='clicked!'">눌러보세요</button>
+	<p>{{msg}}</p>
+	<button ng-click="count=count+1">눌러보세요2</button>
+	<p>버튼을 <strong>{{count}}</strong>번 눌렀네?</p>
+</body>
+</html>

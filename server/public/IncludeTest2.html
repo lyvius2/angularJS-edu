@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>IncludeTest2.html</title>
+	<script src="js/angular.min.js"></script>
+	<script>
+	//angular 모듈 만들기
+	var myApp = angular.module("myApp",[]);
+	myApp.controller("one",["$scope",function($scope){
+		$scope.template = {
+			name:"footer",
+			url:"/fragment/footer.html"
+		};
+	}]);
+	</script>
+</head>
+<body ng-controller="one">
+	<h3>Include Test2</h3>
+	<p>템플릿 이름 : <strong>{{template.name}}</strong></p>
+	<div ng-include="template.url"></div>
+</body>
+</html>
